@@ -4,17 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f48f600396004ac48b98d0632f94dfbf" Name="Diagram1">
-        <EntityTypeShape EntityType="metalModel.archivos" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="metalModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="metalModel.material" Width="1.5" PointX="5.75" PointY="5.75" />
-        <EntityTypeShape EntityType="metalModel.pago" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="metalModel.tamanio" Width="1.5" PointX="2.75" PointY="7.75" />
-        <EntityTypeShape EntityType="metalModel.terminacion" Width="1.5" PointX="7.75" PointY="5.75" />
-        <EntityTypeShape EntityType="metalModel.clientes" Width="1.5" PointX="5.375" PointY="8.75" />
-        <EntityTypeShape EntityType="metalModel.trabajosArchivos" Width="1.5" PointX="3" PointY="1.75" />
-        <AssociationConnector Association="metalModel.FK_trabajosArchivos_archivos" />
-        <EntityTypeShape EntityType="metalModel.ordentrabajo" Width="1.5" PointX="7.375" PointY="8.75" />
+      <Diagram DiagramId="ea5ebdaf8152400eb76a40121d391f40" Name="Diagram1">
+        <EntityTypeShape EntityType="metalModel.archivos" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="metalModel.clientes" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="metalModel.material" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="metalModel.ordentrabajo" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="metalModel.pago" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="metalModel.sysdiagrams" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="metalModel.tamanio" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="metalModel.terminacion" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

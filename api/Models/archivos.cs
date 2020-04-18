@@ -14,17 +14,9 @@ namespace Metal.Models
     
     public partial class archivos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public archivos()
-        {
-            this.trabajosArchivos = new HashSet<trabajosArchivos>();
-        }
-    
         public int id { get; set; }
         public string nombreReal { get; set; }
         public string nombreFisico { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<trabajosArchivos> trabajosArchivos { get; set; }
+        public Nullable<int> idOrdenTrabajo { get; set; }
     }
 }

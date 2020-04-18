@@ -18,7 +18,6 @@ namespace Metal.Models
         public metalEntities()
             : base("name=metalEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -27,13 +26,12 @@ namespace Metal.Models
         }
     
         public virtual DbSet<archivos> archivos { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<clientes> clientes { get; set; }
         public virtual DbSet<material> material { get; set; }
+        public virtual DbSet<ordentrabajo> ordentrabajo { get; set; }
         public virtual DbSet<pago> pago { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tamanio> tamanio { get; set; }
         public virtual DbSet<terminacion> terminacion { get; set; }
-        public virtual DbSet<clientes> clientes { get; set; }
-        public virtual DbSet<trabajosArchivos> trabajosArchivos { get; set; }
-        public virtual DbSet<ordentrabajo> ordentrabajo { get; set; }
     }
 }
