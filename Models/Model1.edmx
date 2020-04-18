@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="metalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="archivos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreReal" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombreFisico" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cliente" Type="nvarchar" MaxLength="50" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="celular" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="cuit" Type="nvarchar" MaxLength="50" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="50" />
+          <Property Name="localidad" Type="nvarchar" MaxLength="50" />
+          <Property Name="provincia" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaalta" Type="date" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="dni" Type="nvarchar" MaxLength="50" />
+          <Property Name="telefonoc" Type="nvarchar" MaxLength="50" />
+          <Property Name="celularc" Type="nvarchar" MaxLength="50" />
+          <Property Name="emailc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="material">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ordentrabajo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCliente" Type="int" />
+          <Property Name="fechaRecepcion" Type="date" />
+          <Property Name="fechaEntrega" Type="date" />
+          <Property Name="trabajo" Type="nvarchar" MaxLength="50" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="idTamanio" Type="int" />
+          <Property Name="idMaterial" Type="int" />
+          <Property Name="idTerminacion" Type="int" />
+          <Property Name="observaciones" Type="nvarchar" MaxLength="50" />
+          <Property Name="enCurso" Type="bit" />
+          <Property Name="pausado" Type="bit" />
+          <Property Name="finalizado" Type="bit" />
+          <Property Name="entregado" Type="bit" />
+          <Property Name="cancelado" Type="bit" />
+          <Property Name="idPago" Type="int" />
+          <Property Name="monto" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="pago">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tamanio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="terminacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="trabajosArchivos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="idTrabajos" Type="int" />
+          <Property Name="idArchivos" Type="int" />
+        </EntityType>
+        <Association Name="FK_trabajosArchivos_archivos">
+          <End Role="archivos" Type="Self.archivos" Multiplicity="0..1" />
+          <End Role="trabajosArchivos" Type="Self.trabajosArchivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="archivos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trabajosArchivos">
+              <PropertyRef Name="idArchivos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="metalModelStoreContainer">
+          <EntitySet Name="archivos" EntityType="Self.archivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clientes" EntityType="Self.clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="material" EntityType="Self.material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ordentrabajo" EntityType="Self.ordentrabajo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pago" EntityType="Self.pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tamanio" EntityType="Self.tamanio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="terminacion" EntityType="Self.terminacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trabajosArchivos" EntityType="Self.trabajosArchivos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_trabajosArchivos_archivos" Association="Self.FK_trabajosArchivos_archivos">
+            <End Role="archivos" EntitySet="archivos" />
+            <End Role="trabajosArchivos" EntitySet="trabajosArchivos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="metalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="archivos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreReal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreFisico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="trabajosArchivos" Relationship="metalModel.FK_trabajosArchivos_archivos" FromRole="archivos" ToRole="trabajosArchivos" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="metalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="archivos" EntityType="Self.archivos" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="material" EntityType="metalModel.material" />
+          <EntitySet Name="pago" EntityType="metalModel.pago" />
+          <EntitySet Name="tamanio" EntityType="metalModel.tamanio" />
+          <EntitySet Name="terminacion" EntityType="metalModel.terminacion" />
+          <EntitySet Name="clientes" EntityType="metalModel.clientes" />
+          <EntitySet Name="trabajosArchivos" EntityType="metalModel.trabajosArchivos" />
+          <AssociationSet Name="FK_trabajosArchivos_archivos" Association="metalModel.FK_trabajosArchivos_archivos">
+            <End Role="archivos" EntitySet="archivos" />
+            <End Role="trabajosArchivos" EntitySet="trabajosArchivos" />
+          </AssociationSet>
+          <EntitySet Name="ordentrabajo" EntityType="metalModel.ordentrabajo" />
+        </EntityContainer>
+        <EntityType Name="material">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="pago">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tamanio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="terminacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="celular" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cuit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="localidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaalta" Type="DateTime" Precision="0" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dni" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefonoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="celularc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emailc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="trabajosArchivos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="idTrabajos" Type="Int32" />
+          <Property Name="idArchivos" Type="Int32" />
+          <NavigationProperty Name="archivos" Relationship="metalModel.FK_trabajosArchivos_archivos" FromRole="trabajosArchivos" ToRole="archivos" />
+        </EntityType>
+        <Association Name="FK_trabajosArchivos_archivos">
+          <End Type="metalModel.archivos" Role="archivos" Multiplicity="0..1" />
+          <End Type="metalModel.trabajosArchivos" Role="trabajosArchivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="archivos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trabajosArchivos">
+              <PropertyRef Name="idArchivos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ordentrabajo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" />
+          <Property Name="fechaRecepcion" Type="DateTime" Precision="0" />
+          <Property Name="fechaEntrega" Type="DateTime" Precision="0" />
+          <Property Name="trabajo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="idTamanio" Type="Int32" />
+          <Property Name="idMaterial" Type="Int32" />
+          <Property Name="idTerminacion" Type="Int32" />
+          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="enCurso" Type="Boolean" />
+          <Property Name="pausado" Type="Boolean" />
+          <Property Name="finalizado" Type="Boolean" />
+          <Property Name="entregado" Type="Boolean" />
+          <Property Name="cancelado" Type="Boolean" />
+          <Property Name="idPago" Type="Int32" />
+          <Property Name="monto" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="metalModelStoreContainer" CdmEntityContainer="metalEntities">
+          <EntitySetMapping Name="archivos">
+            <EntityTypeMapping TypeName="metalModel.archivos">
+              <MappingFragment StoreEntitySet="archivos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombreReal" ColumnName="nombreReal" />
+                <ScalarProperty Name="nombreFisico" ColumnName="nombreFisico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="metalModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="material">
+            <EntityTypeMapping TypeName="metalModel.material">
+              <MappingFragment StoreEntitySet="material">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pago">
+            <EntityTypeMapping TypeName="metalModel.pago">
+              <MappingFragment StoreEntitySet="pago">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tamanio">
+            <EntityTypeMapping TypeName="metalModel.tamanio">
+              <MappingFragment StoreEntitySet="tamanio">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="terminacion">
+            <EntityTypeMapping TypeName="metalModel.terminacion">
+              <MappingFragment StoreEntitySet="terminacion">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="metalModel.clientes">
+              <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="emailc" ColumnName="emailc" />
+                <ScalarProperty Name="celularc" ColumnName="celularc" />
+                <ScalarProperty Name="telefonoc" ColumnName="telefonoc" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="fechaalta" ColumnName="fechaalta" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="localidad" ColumnName="localidad" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="cuit" ColumnName="cuit" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="cliente" ColumnName="cliente" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trabajosArchivos">
+            <EntityTypeMapping TypeName="metalModel.trabajosArchivos">
+              <MappingFragment StoreEntitySet="trabajosArchivos">
+                <ScalarProperty Name="idArchivos" ColumnName="idArchivos" />
+                <ScalarProperty Name="idTrabajos" ColumnName="idTrabajos" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ordentrabajo">
+            <EntityTypeMapping TypeName="metalModel.ordentrabajo">
+              <MappingFragment StoreEntitySet="ordentrabajo">
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="idPago" ColumnName="idPago" />
+                <ScalarProperty Name="cancelado" ColumnName="cancelado" />
+                <ScalarProperty Name="entregado" ColumnName="entregado" />
+                <ScalarProperty Name="finalizado" ColumnName="finalizado" />
+                <ScalarProperty Name="pausado" ColumnName="pausado" />
+                <ScalarProperty Name="enCurso" ColumnName="enCurso" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="idTerminacion" ColumnName="idTerminacion" />
+                <ScalarProperty Name="idMaterial" ColumnName="idMaterial" />
+                <ScalarProperty Name="idTamanio" ColumnName="idTamanio" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="trabajo" ColumnName="trabajo" />
+                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+                <ScalarProperty Name="fechaRecepcion" ColumnName="fechaRecepcion" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
